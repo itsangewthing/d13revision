@@ -30,7 +30,7 @@ public class PersonController {
     private String errorMessage;
 
     // @PutMapping
-
+    // GET is for Displaying the webpage
     @RequestMapping(value = {"/","/home","/index"}, method=RequestMethod.GET)
     public String index(Model model){
         model.addAttribute("message", message);
@@ -61,6 +61,8 @@ public class PersonController {
         return "addPerson";
     }
 
+
+    //POST: because there's a form/document; post creates the entry by using the same routing name. 
     @RequestMapping(value = "/addPerson", method=RequestMethod.POST)
     // using model attribute to parse personForm; when submitted,
     public String savePerson(Model model, @ModelAttribute("personForm") PersonForm personForm){
