@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -44,6 +42,14 @@ public class PersonController {
 
     }
     
+    @RequestMapping(value = "/personList", method=RequestMethod.GET)
+    //if data is not needed for Thymeleaf template to inject, so that it can be placed into the webpage, then Model variable is not needed. 
+    // by using Model , it aids to inject data into webpage
+    public String personList(Model model){
+        personList = perSvc.getPersons();
+        model.addAttribute("persons", personList);
+        return "personList";
+    }
 
 
     }
